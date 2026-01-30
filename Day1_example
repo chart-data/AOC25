@@ -1,0 +1,21 @@
+elvish = """
+L68
+L30
+R48
+L5
+R60
+L55
+L1
+L99
+R14
+L82
+"""
+elvish = elvish.strip().splitlines()
+elvish = ["-" + x[1:] if x.startswith("L") else "+" + x[1:] for x in elvish]
+elvish = [int(x) for x in elvish]
+current_state = 50
+state_history = []
+for step in elvish:
+    current_state=(current_state + step) % 100
+    state_history.append(current_state)
+print(state_history.count(0))

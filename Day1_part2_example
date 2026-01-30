@@ -1,0 +1,27 @@
+elvish = """
+L68
+L30
+R48
+L5
+R60
+L55
+L1
+L99
+R14
+L82
+"""
+elvish = elvish.strip().splitlines()
+elvish = ["-" + x[1:] if x.startswith("L") else "+" + x[1:] for x in elvish]
+elvish = [int(x) for x in elvish]
+unwrapped = 50
+wrapped_position = 50
+zero_passes = 0
+wrapped_position_history =[wrapped_position]
+for step in elvish:
+    prev_block = unwrapped // 100
+    unwrapped += step
+    new_block = unwrapped // 100
+    zero_passes += abs(new_block - prev_block)
+    wrapped_position = unwrapped % 100
+    wrapped_position_history.append(wrapped_position)
+print(zero_passes)
